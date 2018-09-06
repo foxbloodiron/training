@@ -98,3 +98,14 @@
 </article>
 
 @endsection
+@section('extra_script')
+<script type="text/javascript">
+	$('.btn-simpan').click(function(){
+		$form = $('#form_databarang').serialize();
+
+		$tes_class = $('.tes_class:nth-child(2)').val();
+
+		$('#satuan').val($tes_class);
+	});
+</script>
+@endsection
