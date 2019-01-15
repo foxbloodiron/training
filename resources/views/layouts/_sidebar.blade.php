@@ -261,7 +261,11 @@
 @section('extra_script')
 <script type="text/javascript">
     
-    alert('a');
+    $(document).ready(function(){
+
+        alert('a');
+
+    });
 
 </script>
 @endsection
