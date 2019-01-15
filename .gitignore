@@ -9,4 +9,5 @@ compile_commands.json
 CTestTestfile.cmake
 .env
 
-/vendor/
+vendor/
+node_modules/
