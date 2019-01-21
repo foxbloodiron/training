@@ -22,12 +22,15 @@ Route::group(['middleware' => 'auth'], function(){
 	Route::get('/home', 'HomeController@index')->name('home');
 
 	// Master
-	Route::get('/master/databarang/databarang', 'MasterController@databarang');
-	Route::get('/master/datasuplier/datasuplier', 'MasterController@datasuplier');
-	Route::get('/master/datacustomerkontraktor/datacustomerkontraktor', 'MasterController@datacustomerkontraktor');
-	Route::get('/master/dataarmada/dataarmada', 'MasterController@dataarmada');
-	Route::get('/master/datacustomerharian/datacustomerharian', 'MasterController@datacustomerharian');
-	Route::get('/master/datapegawai/datapegawai', 'MasterController@datapegawai');
+	Route::get('/master/databarang/databarang', 'MasterController@databarang')->name('databarang');
+	Route::get('/master/datasuplier/datasuplier', 'MasterController@datasuplier')->name('datasuplier');
+	Route::get('/master/datasuplier/datatable_datasuplier', 'MasterController@datatable_datasuplier')->name('datatable_datasuplier');
+	Route::get('/master/datasuplier/simpan_datasuplier', 'MasterController@simpan_datasuplier')->name('simpan_datasuplier');
+	Route::get('/master/datasuplier/get_editdatasuplier', 'MasterController@get_editdatasuplier')->name('get_editdatasuplier');
+	Route::get('/master/datacustomerkontraktor/datacustomerkontraktor', 'MasterController@datacustomerkontraktor')->name('datacustomerkontraktor');
+	Route::get('/master/dataarmada/dataarmada', 'MasterController@dataarmada')->name('dataarmada');
+	Route::get('/master/datacustomerharian/datacustomerharian', 'MasterController@datacustomerharian')->name('datacustomerharian');
+	Route::get('/master/datapegawai/datapegawai', 'MasterController@datapegawai')->name('datapegawai');
 
 	
 });

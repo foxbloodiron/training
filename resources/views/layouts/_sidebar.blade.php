@@ -41,37 +41,12 @@
                         <li>
                             <a href="" class="notification-item">
                                 <div class="img-col">
-                                    <div class="img" style="background-image: url('assets/assets/faces/3.jpg')"></div>
+                                    <div class="img" style="background-image: url('{{asset("/assets/assets/faces/3.jpg")}}')"></div>
                                 </div>
                                 <div class="body-col">
                                     <p>
                                         <span class="accent">Zack Alien</span> pushed new commit:
                                         <span class="accent">Fix page load performance issue</span>. </p>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="" class="notification-item">
-                                <div class="img-col">
-                                    <div class="img" style="background-image: url('assets/assets/faces/5.jpg')"></div>
-                                </div>
-                                <div class="body-col">
-                                    <p>
-                                        <span class="accent">Amaya Hatsumi</span> started new task:
-                                        <span class="accent">Dashboard UI design.</span>. </p>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="" class="notification-item">
-                                <div class="img-col">
-                                    <div class="img" style="background-image: url('assets/assets/faces/8.jpg')"></div>
-                                </div>
-                                <div class="body-col">
-                                    <p>
-                                        <span class="accent">Andy Nouman</span> deployed new version of
-                                        <span class="accent">NodeJS REST Api V3</span>
-                                    </p>
                                 </div>
                             </a>
                         </li>
@@ -263,7 +238,7 @@
     
     $(document).ready(function(){
 
-        alert('a');
+        //
 
     });
 
