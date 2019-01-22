@@ -98,14 +98,14 @@
 		});
 
 		$('#btn-simpan-sup').click(function(){
-			alert('click');
+			// alert('click');
 			$.ajax({
 				url: '{{route('simpan_datasuplier')}}',
 				type:'JSON',
 				data:$('#form_datasuplier').serialize(),
 				method:'GET',
 				success:function(response){
-					if(response === true){
+					if(response === true || response === 1){
 						$('#form_datasuplier :input').val('');
 
 						$('#tambah').modal('hide');
@@ -113,6 +113,25 @@
 					}
 				},
 				error:function(){
+					alert('error');
+				}
+
+			});
+
+		});
+
+		$('#tabel_suplier tbody').on('click','.btn-delete', function(){
+
+			$.ajax({
+				url:'{{route('delete_datasuplier')}}',
+				type:'JSON',
+				data:{id:$(this).data('idx')},
+				method:'GET',
+				success:function(response){
+					console.log('success');
+					table.ajax.reload();
+				},
+				error:function(response){
 					alert('error');
 				}
 
@@ -135,6 +154,13 @@
 
 						$('#idx').val(response.data.id);
 						$('input[name="nama_perusahaan"]').val(response.data.nama_perusahaan);
+						$('input[name="nama_sup"]').val(response.data.nama_sup);
+						$('input[name="npwp"]').val(response.data.npwp);
+						$('input[name="no_hp"]').val(response.data.no_hp);
+						$('input[name="email"]').val(response.data.email);
+						$('textarea[name="alamat"]').val(response.data.alamat);
+						$('textarea[name="keterangan"]').val(response.data.keterangan);
+						$('input[name="fax"]').val(response.data.fax);
 				},
 				error:function(){
 					alert('error');

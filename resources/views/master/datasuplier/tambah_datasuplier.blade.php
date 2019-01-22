@@ -10,9 +10,9 @@
       </div>
       <div class="modal-body">
         <form id="form_datasuplier">
+          <input type="hidden" id="idx" name="id">
           <div class="row">
             
-              <input type="hidden" id="idx" name="idx">
               
               <div class="col-md-6 col-sm-6 col-xs-12">
                 <label>Nama Perusahaan</label>

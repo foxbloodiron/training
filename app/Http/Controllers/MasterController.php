@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use DB;
 use App\Suplier;
 use DataTables;
+use Pusher\Pusher;
 
 class MasterController extends Controller
 {
@@ -36,7 +37,26 @@ class MasterController extends Controller
     public function simpan_datasuplier(Request $request){
         $input = $request->all();
 
-        $insert = DB::table('suplier')->insert($input);
+        $id = DB::table('suplier')->max('id');
+
+        $max_id = $id + 1;
+
+        if($request->id === null){
+            $id = array('id' => $max_id);
+
+            array_merge($input, $id);
+
+            $insert = DB::table('suplier')->insert($input);
+
+        } else {
+
+             // return $input;
+            // return $input = array_splice($input, 0,0, array('id'));
+
+
+            $insert = DB::table('suplier')->where('id', $input['id'])->update($input);
+
+        }
 
         return response()->json($insert);
     }
@@ -46,6 +66,13 @@ class MasterController extends Controller
         $get_data = DB::table('suplier')->where('id', $id)->first();
 
         return response()->json(['data' => $get_data]);
+    }
+    public function delete_datasuplier(Request $request){
+        $id = $request->id;
+
+        $remove = DB::table('suplier')->where('id', $id)->delete();
+
+        return response()->json($remove);
     }
     public function datacustomerharian()
     {
@@ -62,6 +89,22 @@ class MasterController extends Controller
     public function dataarmada()
     {
     	return view('master/dataarmada/dataarmada');
+    }
+    public function pusher(){
+          $options = array(
+            'cluster' => 'ap1',
+            'useTLS' => true
+          );
+          $pusher = new Pusher(
+            'f3dfb944b5caa13e1438',
+            '60a602df4ca57cb4dd9b',
+            '686477',
+            $options
+          );
+
+          $data['message'] = 'hello world';
+          $pusher->trigger('my-channel', 'my-event', $data);
+
     }
 }
 

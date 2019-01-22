@@ -13,6 +13,7 @@
 <script src="{{asset('assets/js/app.js')}}"></script>
 <script src="{{asset('assets/datatables/datatables.min.js')}}"></script>
 <script src="{{asset('assets/datepicker/js/bootstrap-datepicker.min.js')}}"></script>
+<script src="{{asset('assets/js/pusher.min.js')}}"></script>
 
 <script type="text/javascript">
 	$(document).ready(function(){
@@ -61,4 +62,37 @@
 			format:"dd-mm-yyyy",
 		});
 	});
+</script>
+<script type="text/javascript">
+    
+    $(document).ready(function(){
+
+        var pusher = new Pusher('f3dfb944b5caa13e1438', {
+          cluster: 'ap1',
+          forceTLS: true
+        });
+
+        var channel = pusher.subscribe('my-channel');
+        channel.bind('my-event', function(data) {
+            console.log(data);
+            console.log(data.length);
+          appends(data['message']);
+        });
+
+        function appends(datas){
+            $('#notifications-container').append('<li>'+
+                            '<a href="" class="notification-item">'+
+                                '<div class="img-col">'+
+                                    '<div class="img" style="background-image: url('+ firstUrl+'/assets/assets/faces/3.jpg)"></div>'+
+                                '</div>'+
+                                '<div class="body-col">'+
+                                    '<p>'+ datas +'</p>'+
+                                '</div>'+
+                            '</a>'+
+                        '</li>');
+        }
+
+    });
+
+
 </script>

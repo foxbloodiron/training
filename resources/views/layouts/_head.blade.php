@@ -3,6 +3,7 @@
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <title>Training | Laravel</title>
         <meta name="description" content="">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="shortcut icon" href="{{asset('assets/alexis.png')}}">
         <!-- Place favicon.ico in the root directory -->

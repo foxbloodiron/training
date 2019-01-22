@@ -27,10 +27,11 @@ Route::group(['middleware' => 'auth'], function(){
 	Route::get('/master/datasuplier/datatable_datasuplier', 'MasterController@datatable_datasuplier')->name('datatable_datasuplier');
 	Route::get('/master/datasuplier/simpan_datasuplier', 'MasterController@simpan_datasuplier')->name('simpan_datasuplier');
 	Route::get('/master/datasuplier/get_editdatasuplier', 'MasterController@get_editdatasuplier')->name('get_editdatasuplier');
+	Route::get('/master/datasuplier/delete_datasuplier', 'MasterController@delete_datasuplier')->name('delete_datasuplier');
 	Route::get('/master/datacustomerkontraktor/datacustomerkontraktor', 'MasterController@datacustomerkontraktor')->name('datacustomerkontraktor');
 	Route::get('/master/dataarmada/dataarmada', 'MasterController@dataarmada')->name('dataarmada');
 	Route::get('/master/datacustomerharian/datacustomerharian', 'MasterController@datacustomerharian')->name('datacustomerharian');
 	Route::get('/master/datapegawai/datapegawai', 'MasterController@datapegawai')->name('datapegawai');
 
-	
+	Route::get('/pusher', 'MasterController@pusher');
 });

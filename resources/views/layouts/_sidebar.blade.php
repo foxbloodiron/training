@@ -37,7 +37,7 @@
                     </sup>
                 </a>
                 <div class="dropdown-menu notifications-dropdown-menu">
-                    <ul class="notifications-container">
+                    <ul class="notifications-container" id="notifications-container">
                         <li>
                             <a href="" class="notification-item">
                                 <div class="img-col">
@@ -234,13 +234,5 @@
 <div class="mobile-menu-handle"></div>
 
 @section('extra_script')
-<script type="text/javascript">
-    
-    $(document).ready(function(){
 
-        //
-
-    });
-
-</script>
 @endsection
