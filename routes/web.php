@@ -34,4 +34,5 @@ Route::group(['middleware' => 'auth'], function(){
 	Route::get('/master/datapegawai/datapegawai', 'MasterController@datapegawai')->name('datapegawai');
 
 	Route::get('/pusher', 'MasterController@pusher');
+	Route::get('/get_notif', 'NotifController@get_notif')->name('get_notif');
 });

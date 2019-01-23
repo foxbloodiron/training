@@ -7,6 +7,8 @@ use DB;
 use App\Suplier;
 use DataTables;
 use Pusher\Pusher;
+use App\Http\Controllers\NotifController;
+use Auth;
 
 class MasterController extends Controller
 {
@@ -37,6 +39,7 @@ class MasterController extends Controller
     public function simpan_datasuplier(Request $request){
         $input = $request->all();
 
+
         $id = DB::table('suplier')->max('id');
 
         $max_id = $id + 1;
@@ -48,6 +51,8 @@ class MasterController extends Controller
 
             $insert = DB::table('suplier')->insert($input);
 
+            NotifController::SaveNotif('Data Suplier', 'Simpan', $request->nama_sup);
+
         } else {
 
              // return $input;
@@ -55,6 +60,8 @@ class MasterController extends Controller
 
 
             $insert = DB::table('suplier')->where('id', $input['id'])->update($input);
+
+            NotifController::SaveNotif('Data Suplier', 'Edit', $request->nama_sup);
 
         }
 
@@ -69,6 +76,11 @@ class MasterController extends Controller
     }
     public function delete_datasuplier(Request $request){
         $id = $request->id;
+
+        $data = DB::table('suplier')->where('id', $id)->first();
+
+        NotifController::SaveNotif('Data Suplier', 'Delete', $data->nama_sup);
+
 
         $remove = DB::table('suplier')->where('id', $id)->delete();
 
@@ -92,13 +104,13 @@ class MasterController extends Controller
     }
     public function pusher(){
           $options = array(
-            'cluster' => 'ap1',
+            'cluster' => env('PUSHER_APP_CLUSTER'),
             'useTLS' => true
           );
           $pusher = new Pusher(
-            'f3dfb944b5caa13e1438',
-            '60a602df4ca57cb4dd9b',
-            '686477',
+            env('PUSHER_APP_KEY'),
+            env('PUSHER_APP_SECRET'),
+            env('PUSHER_APP_ID'),
             $options
           );
 

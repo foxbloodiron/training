@@ -33,12 +33,12 @@
                 <a href="" data-toggle="dropdown">
                     <i class="fa fa-bell-o"></i>
                     <sup>
-                        <span class="counter">8</span>
+                        <span class="counter" id="jumlah_notif"></span>
                     </sup>
                 </a>
                 <div class="dropdown-menu notifications-dropdown-menu">
                     <ul class="notifications-container" id="notifications-container">
-                        <li>
+                        {{-- <li>
                             <a href="" class="notification-item">
                                 <div class="img-col">
                                     <div class="img" style="background-image: url('{{asset("/assets/assets/faces/3.jpg")}}')"></div>
@@ -49,7 +49,7 @@
                                         <span class="accent">Fix page load performance issue</span>. </p>
                                 </div>
                             </a>
-                        </li>
+                        </li> --}}
                     </ul>
                     <footer>
                         <ul>

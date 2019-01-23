@@ -67,29 +67,91 @@
     
     $(document).ready(function(){
 
-        var pusher = new Pusher('f3dfb944b5caa13e1438', {
-          cluster: 'ap1',
+        var p_key = "{{env('PUSHER_APP_KEY')}}";
+        var p_cluster = "{{env('PUSHER_APP_CLUSTER')}}";
+
+        var pusher = new Pusher(p_key, {
+          cluster: p_cluster,
           forceTLS: true
         });
 
+        // console.log(p_key);
+        // console.log(p_cluster);
+
         var channel = pusher.subscribe('my-channel');
         channel.bind('my-event', function(data) {
-            console.log(data);
-            console.log(data.length);
-          appends(data['message']);
+            // console.log(data);
+            // console.log(data.response.aksi);
+
+
+            var jumlah_nav_notif = parseInt($('#jumlah_notif').html()) + 1;
+
+            // console.log(jumlah_nav_notif);
+
+            appends(data);
+
+            $('#jumlah_notif').text(jumlah_nav_notif);
+
         });
 
+        @if(Auth::check())
+            $.ajax({
+                url:'{{route('get_notif')}}',
+                type:'GET',
+                success:function(response){
+                        // console.log(response);
+
+                        $('#jumlah_notif').html(response.length);
+                    
+                        for (var i = 0; i < 5; i++) {
+                            $('#notifications-container').append(
+                                '<li>'+
+                                    '<a href="" class="notification-item">'+
+                                        '<div class="img-col">'+
+                                            '<div class="img" style="background-image: url('+ firstUrl +'/assets/assets/faces/3.jpg) "></div>'+
+                                        '</div>'+
+                                        '<div class="body-col">'+
+                                            '<p>'+
+                                                '<span class="accent">'+ response[i].name +'</span> melakukan aksi '+ response[i].aksi_user + ' : ' +
+                                                '<span class="accent">'+ response[i].data +'</span> di <span class="accent">' + 
+                                                    response[i].menu
+                                                 + '</span> </p>'+
+                                        '</div>'+
+                                    '</a>'+
+                                '</li>'
+                                );
+                        }
+                    
+                        var jumlah_notif = parseInt(response.length) + 1;
+
+                        // console.log(jumlah_notif);
+
+                },
+                error:function(response){
+                    alert('error');
+                }
+
+
+            });
+
+        @endif
+
         function appends(datas){
-            $('#notifications-container').append('<li>'+
+            $('#notifications-container').prepend('<li>'+
                             '<a href="" class="notification-item">'+
                                 '<div class="img-col">'+
                                     '<div class="img" style="background-image: url('+ firstUrl+'/assets/assets/faces/3.jpg)"></div>'+
                                 '</div>'+
                                 '<div class="body-col">'+
-                                    '<p>'+ datas +'</p>'+
+                                    '<p><span class="accent">'+ datas.response.user +'</span> melakukan aksi '+ datas.response.aksi +
+                                        ' : <span class="accent">' + datas.response.ket + '</span> di <span class="accent">' + 
+                                        datas.response.menu + '</span>' +
+                                    '</p>'+
                                 '</div>'+
                             '</a>'+
                         '</li>');
+
+            $('#notifications-container > li:last-child').remove();
         }
 
     });
