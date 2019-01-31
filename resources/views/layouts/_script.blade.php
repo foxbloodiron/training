@@ -106,7 +106,7 @@
                         for (var i = 0; i < 5; i++) {
                             $('#notifications-container').append(
                                 '<li>'+
-                                    '<a href="" class="notification-item">'+
+                                    '<a href="javascript:void(0);" class="notification-item">'+
                                         '<div class="img-col">'+
                                             '<div class="img" style="background-image: url('+ firstUrl +'/assets/assets/faces/3.jpg) "></div>'+
                                         '</div>'+
@@ -138,7 +138,7 @@
 
         function appends(datas){
             $('#notifications-container').prepend('<li>'+
-                            '<a href="" class="notification-item">'+
+                            '<a href="javascript:void(0);" class="notification-item" style="background-color:#f5f5f5">'+
                                 '<div class="img-col">'+
                                     '<div class="img" style="background-image: url('+ firstUrl+'/assets/assets/faces/3.jpg)"></div>'+
                                 '</div>'+

@@ -54,7 +54,7 @@
                     <footer>
                         <ul>
                             <li>
-                                <a href=""> View All </a>
+                                <a href="#"> View All </a>
                             </li>
                         </ul>
                     </footer>
