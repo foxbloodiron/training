@@ -16,3 +16,8 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+// route group
+Route::group(['middleware' => 'auth:api'], function(){
+	Route::get('/master/datasuplier/datatable_datasuplier', 'MasterController@datatable_datasuplier')->name('datatable_datasuplier');
+});
+// end route group
